@@ -1,9 +1,7 @@
-PROJNAME=ui1
+PROJNAME=ui
 
 ui:
 	yarn create vite $(PROJNAME) --template react && cd $(PROJNAME) && yarn
 
-rest:
-	go run .
 
 .PHONY: ui

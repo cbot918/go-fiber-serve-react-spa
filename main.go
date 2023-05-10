@@ -3,6 +3,7 @@ package main
 import (
 	"net/http"
 
+	"github.com/cbot918/go-fiber-serve-react-spa/rest"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/logger"
 	"github.com/gofiber/fiber/v2/middleware/recover"
@@ -15,6 +16,10 @@ func main() {
 	app.Use(recover.New())
 
 	app.Static("/", "./ui/dist")
+
+	// router
+	rest := rest.New()
+	app.Get("/ping", rest.Ping)
 
 	app.Use(func(c *fiber.Ctx) error {
 		return c.Status(http.StatusNotFound).SendString("Not Found")
